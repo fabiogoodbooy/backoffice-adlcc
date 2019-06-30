@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css') }}">
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+{%  endblock %}
+{% block body %}
+
+
+
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
+    {% endif %}
+<div class="wrapper">
+    <div class="inner">
+        <div class="image-holder">
+            <img src="{{ asset('assets/images/register-log.png') }}" alt="registration img">
+        </div>
+        <form action="{{ path('security_login') }}" method="post">
+            <h3>Welcome to ADLCC</h3>
+
+            <div class="form-wrapper">
+                <input type="text" placeholder="Adress email" class="form-control" name="_username">
+                <i class="zmdi zmdi-account"></i>
+            </div>
+
+            <div class="form-wrapper">
+                <input type="password" placeholder="Password" class="form-control" name="_password">
+                <i class="zmdi zmdi-lock"></i>
+            </div>
+            <input type="hidden" name="go_to" value="{{ path('rubrique_index') }}"/>
+            <button type="submit">login
+                <i class="zmdi zmdi-arrow-right"></i>
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Rubrique{% endblock %}
+
+{% block body %}
+
+
+
+     {% include 'tmp.html.twig' %}
+
+<div class="content">
+    <div class="container-fluid">
+
+
+
+        <div class="row">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
+                {{ form_start(form)}}
+                <div class="card">
+                    <div class="card-header card-header-rose card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <h4 class="card-title">Modifier Rubrique</h4>
+                    </div>
+                    <div class="card-body ">
+
+
+                        <div class="form-horizontal">
+                            <div class="row">
+                                <label class="col-md-3 col-form-label"></label>
+                                <div class="col-md-9">
+                                    <div class="form-group has-default bmd-form-group">
+
+
+                                        {{ form_row(form.title,{'attr':{'class':'form-control'}}) }}
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="card-footer ml-auto mr-auto">
+
+                                <button type="submit" class="btn btn-fill btn-rose ">Modifer</button>
+
+                    </div>
+                    {{ form_end(form)}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+    <!--tmp div-->
+    </div>
+    </div>
+    <!--End tmp div-->
+{% endblock %}

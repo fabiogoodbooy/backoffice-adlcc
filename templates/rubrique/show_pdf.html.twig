@@ -1,0 +1,84 @@
+
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% include 'tmp.html.twig' %}
+<div class="content">
+
+
+   <div class="row">
+      <div class="col-md-12">
+
+         <div class="col-md-12">
+            <div class="card">
+               <div class="card-header card-header-primary">
+                  <h4 class="card-title ">{{ rubrique.id }} | {{ rubrique.title }}</h4>
+
+               </div>
+               <div class="container-fluid">
+                  <a href="{{ path('files_new') }}" class="btn btn-info float-right">
+                                                <span class="btn-label">
+                                                <i class="material-icons">library_add</i>
+                                                </span>
+
+                     Ajouter un fichier PDF aux  {{ rubrique.title }}
+                  </a>
+               </div>
+               <div class="card-body">
+                  <!--start card-stats-->
+                  {% if files %}
+                   {%  for file in files %}
+                  <div class="col-md-6">
+                     <div class="card card-stats">
+                        <div class="card-header card-header-warning card-header-icon">
+                           <div class="card-icon">
+                              <a href="{{ asset(file.url) }}">
+                              <i class="material-icons">content_copy</i>
+                              </a>
+                           </div>
+                           <p class="card-category"> <small>nom</small>
+                               {{ file.namefile }}</p>
+                           <h3 class="card-title">
+                               <small>titre</small>
+                               {{ file.title }}
+                           </h3>
+                        </div>
+                        <div class="card-footer">
+                           <div class="stats">
+                              <i class="material-icons text-danger">description</i>
+                              <a href="{{ asset(file.url) }}">{{ file.description }}e</a>
+                           </div>
+                           <form method="post" action="{{ path('files_delete', {'id': file.id,'id_rubrique':rubrique.id}) }}" onsubmit="return confirm('vous etes sure ?');">
+                              <input type="hidden" name="_method" value="DELETE">
+                              <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ file.id) }}">
+                              <button class="btn btn-danger btn-round btn-fab">
+                                 <i class="material-icons ">delete_sweep</i>
+                              </button>
+                           </form>
+
+
+                           <a href="{{ path('files_edit', {'id': file.id}) }}" class="btn btn-warning btn-round btn-fab">
+                              <i class="material-icons text-primary">update</i>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+                   {% endfor %}
+                  {% else %}
+                     <div class="tim-typo">
+                        <h2>
+                           Cette Rubrique ne  contient pas des fichiers PDF !!!</small>
+                        </h2>
+
+                     </div>
+                  {% endif %}
+                  <!--end card-stats-->
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!--tmp div-->
+</div>
+</div>
+<!--End tmp div-->
+{% endblock %}

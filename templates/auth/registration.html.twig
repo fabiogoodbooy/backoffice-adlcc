@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css') }}">
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+{%  endblock %}
+{% block body %}
+{{ form_start(form)}}
+{{form_widget(form)}}
+
+<button type="submit">Inscription</button>
+{{ form_end(form)}}
+
+
+{% endblock %}

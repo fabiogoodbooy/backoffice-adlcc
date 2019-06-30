@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% include 'tmp.html.twig' %}
+    <div class="content">
+
+
+            <div class="row">
+                <div class="col-md-12">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title ">liste de rubrique</h4>
+
+                        </div>
+                        <div class="container-fluid">
+                            <button type="submit" class="btn btn-info float-right">
+                                                <span class="btn-label">
+                                                <i class="material-icons">library_add</i>
+                                                </span>
+
+                                Ajouter un rubrique
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Titre
+                                    </th>
+                                    <th>
+
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+
+                                    </thead>
+                                    <tbody>
+
+                                    {% for rubrique in rubriques %}
+
+
+                                    <tr>
+                                        <td>
+                                            {{ rubrique.id }}
+                                        </td>
+                                            <td>
+                                            {{ rubrique.title }}
+                                            </td>
+                                        <td>
+
+                                        </td>
+                                        <td>
+                                            <button type="submit" class="btn btn-info">
+                                                <span class="btn-label">
+                                                <i class="material-icons">file_copy</i>
+                                                </span>
+                                                <div class="ripple-container"></div>
+                                                PDF
+                                            </button>
+
+                                            <a href="#" class="btn btn-warning">
+                                                <span class="btn-label">
+                                                <i class="material-icons">update</i>
+                                                </span>
+                                                <div class="ripple-container"></div>
+                                                Modifier
+                                            </a>
+                                            <a href="{{ path('rubrique_delete') }}" class="btn btn-danger">
+                                                <span class="btn-label">
+                                                <i class="material-icons">warning</i>
+                                                </span>
+                                                <div class="ripple-container"></div>
+                                                Supprimer
+                                            </a>
+                                        </td>
+
+                                    </tr>
+
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <!--tmp div-->
+    </div>
+    </div>
+<!--End tmp div-->
+
+
+{% endblock %}

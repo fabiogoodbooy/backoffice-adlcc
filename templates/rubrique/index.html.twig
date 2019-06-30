@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% include 'tmp.html.twig' %}
+    <div class="content">
+
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-rose">
+                            <h4 class="card-title ">liste de rubrique</h4>
+
+                        </div>
+                        <div class="container-fluid">
+                            <a href="{{ path('rubrique_new') }}" class="btn btn-info float-right">
+                                                <span class="btn-label">
+                                                <i class="material-icons">library_add</i>
+                                                </span>
+
+                                Ajouter un rubrique
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Titre
+                                    </th>
+                                    <th>
+
+
+                                        Action
+                                    </th>
+
+                                    </thead>
+                                    <tbody>
+
+                                    {% for rubrique in rubriques %}
+
+
+                                        <tr>
+                                            <td>
+                                                {{ rubrique.id }}
+                                            </td>
+                                            <td>
+                                                {{ rubrique.title }}
+                                            </td>
+
+                                            <td>
+                                                <a href="{{ path('show_pdf',{'id': rubrique.id}) }}" class="btn btn-info">
+                                                <span class="btn-label">
+                                                <i class="material-icons">file_copy</i>
+                                                </span>
+                                                    <div class="ripple-container"></div>
+                                                    PDF
+                                                </a>
+
+                                                <a hrfe="{{ path('rubrique_edit' ,{'id':rubrique.id}) }}" class="btn btn-warning">
+                                                <span class="btn-label">
+                                                <i class="material-icons">update</i>
+                                                </span>
+                                                    <div class="ripple-container"></div>
+                                                    Modifier
+                                                </a>
+                                                <form method="post" action="{{ path('rubrique_delete', {'id': rubrique.id}) }}" onsubmit="return confirm('si vous supprimez le rubrique tous les fichier pdf se supprimer');">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ rubrique.id) }}">
+
+                                                <button  class="btn btn-danger">
+                                                <span class="btn-label">
+                                                <i class="material-icons">warning</i>
+                                                </span>
+                                                    <div class="ripple-container"></div>
+                                                    Supprimer
+
+                                                </button>
+
+                                                </form>
+                                            </td>
+
+                                        </tr>
+
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--tmp div-->
+    </div>
+    </div>
+    <!--End tmp div-->
+
+
+{% endblock %}
