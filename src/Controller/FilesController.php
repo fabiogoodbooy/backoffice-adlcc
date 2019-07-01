@@ -31,6 +31,7 @@ class FilesController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $file = new Files();
         $form = $this->createForm(FilesType::class, $file);
         $form->handleRequest($request);
@@ -52,7 +53,7 @@ class FilesController extends AbstractController
             $entityManager->persist($file);
             $entityManager->flush();
             $id_rubrique=$file->getRubrique()->getId();
-            var_dump($id_rubrique);
+
             return $this->redirectToRoute('show_pdf', ['id' => $id_rubrique]);
         }
 
