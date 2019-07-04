@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Files;
+use App\Form\EditFilesType;
 use App\Form\FilesType;
 use App\Repository\FilesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -78,13 +79,13 @@ class FilesController extends AbstractController
      */
     public function edit(Request $request, Files $file): Response
     {
-        $form = $this->createForm(FilesType::class, $file);
+        $form = $this->createForm(EditFilesType::class, $file);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('files_index', [
+            return $this->redirectToRoute('files_edit', [
                 'id' => $file->getId(),
             ]);
         }
