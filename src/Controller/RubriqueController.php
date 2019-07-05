@@ -21,6 +21,8 @@ class RubriqueController extends AbstractController
      */
     public function index(RubriqueRepository $rubriqueRepository): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         return $this->render('rubrique/index.html.twig', [
             'rubriques' => $rubriqueRepository->findAll(),
         ]);
@@ -31,6 +33,8 @@ class RubriqueController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $rubrique = new Rubrique();
         $form = $this->createForm(RubriqueType::class, $rubrique);
         $form->handleRequest($request);
@@ -54,6 +58,8 @@ class RubriqueController extends AbstractController
      */
     public function show(Rubrique $rubrique): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         return $this->render('rubrique/show.html.twig', [
             'rubrique' => $rubrique,
         ]);
@@ -64,6 +70,8 @@ class RubriqueController extends AbstractController
      */
     public function edit(Request $request, Rubrique $rubrique): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $form = $this->createForm(RubriqueType::class, $rubrique);
         $form->handleRequest($request);
 
@@ -86,7 +94,8 @@ class RubriqueController extends AbstractController
      */
     public function delete(Request $request, Rubrique $rubrique ): Response
     {
-       // $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         if ($this->isCsrfTokenValid('delete'.$rubrique->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($rubrique);
@@ -98,6 +107,7 @@ class RubriqueController extends AbstractController
      * @Route("/{id}/pdf", name="show_pdf")
      */
     public function show_pdf($id){
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $repository = $this->getDoctrine()->getManager()->getRepository(Rubrique::class);
         $rubrique = $repository->find($id);
 
